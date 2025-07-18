@@ -2,10 +2,10 @@ import streamlit as st
 from openai import OpenAI
 
 # Show title and description.
-st.title("📄 Document question answering")
+st.title("📄 Hi! Welcome to Faye")
 st.write(
-    "Upload a document below and ask a question about it – GPT will answer! "
-    "To use this app, you need to provide an OpenAI API key, which you can get [here](https://platform.openai.com/account/api-keys). "
+    "Your all-in-one internal market research tool, powered by Buntin Group"
+    "Please attach your OpenAI API Key [here](https://platform.openai.com/account/api-keys). "
 )
 
 # Ask user for their OpenAI API key via `st.text_input`.
@@ -27,7 +27,7 @@ else:
     # Ask the user for a question via `st.text_area`.
     question = st.text_area(
         "Now ask a question about the document!",
-        placeholder="Can you give me a short summary?",
+        placeholder="Who are the main competitors of CFP?",
         disabled=not uploaded_file,
     )
 
