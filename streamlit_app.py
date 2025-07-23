@@ -18,7 +18,7 @@ st.write(
 # ":closed_loack_with_key: Please enter in the password to access Faye."
 # "\nPlease contact your administrator if you are having trouble with access.")
 
-api_key = st.secrets["OpenAI"]["privateKey"]
+api_key = st.secrets["privateKey"]
 
 if not api_key:
     st.info("Please add your OpenAI API key to continue.", icon="🗝️")
