@@ -1,3 +1,4 @@
+import toml
 import streamlit as st
 from openai import OpenAI
 
@@ -18,7 +19,9 @@ st.write(
 # ":closed_loack_with_key: Please enter in the password to access Faye."
 # "\nPlease contact your administrator if you are having trouble with access.")
 
-api_key = st.secrets["privateKey"]
+api_key = st.secrets["openAI"]["privateKey"]
+
+print(api_key)
 
 if not api_key:
     st.info("Please add your OpenAI API key to continue.", icon="🗝️")
