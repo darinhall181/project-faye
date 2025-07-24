@@ -8,24 +8,23 @@ st.write(
     "\n\nPlease put your OpenAI key below. Don't know the key? Sign in [here](https://platform.openai.com/account/api-keys). "
 )
 
-# Ask user for their OpenAI API key via `st.text_input`.
-# Alternatively, you can store the API key in `./.streamlit/secrets.toml` and access it
-# via `st.secrets`, see https://docs.streamlit.io/develop/concepts/connections/secrets-management
-
-
 # Add in main section for password protection
 # st.write(
 # ":closed_loack_with_key: Please enter in the password to access Faye."
 # "\nPlease contact your administrator if you are having trouble with access.")
 
-api_key = st.secrets["privateKey"]
+# Ask user for their OpenAI API key via `st.text_input`.
+# Alternatively, you can store the API key in `./.streamlit/secrets.toml` and access it
+# via `st.secrets`, see https://docs.streamlit.io/develop/concepts/connections/secrets-management
+openai_api_key = st.text_input("OpenAI API Key", type="password")
+print(openai_api_key)
 
-if not api_key:
+if not openai_api_key:
     st.info("Please add your OpenAI API key to continue.", icon="🗝️")
 else:
 
     # Create an OpenAI client.
-    client = OpenAI(api_key=api_key)
+    client = OpenAI(api_key=openai_api_key)
 
     # Let the user upload a file via `st.file_uploader`.
     uploaded_file = st.file_uploader(
