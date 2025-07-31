@@ -323,3 +323,7 @@ settings.local.*
 .env.development.local
 .env.test.local
 .env.production.local
+
+# Streamlit secrets and configuration
+.streamlit/secrets.toml
+.streamlit/config.toml
