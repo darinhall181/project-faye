@@ -1,11 +1,18 @@
 import streamlit as st
 from openai import OpenAI
+import google.generativeai as genai
+
+# Home page button
+homeButton = st.button("Home")
+
+if homeButton:
+    st.page_link("https://buntingpt.streamlit.app/", label="Buntin GPT", icon="🏠")
 
 # Show title and description.
 st.title("Hi! Welcome to Faye 🤓")
 st.write(
     "Your all-in-one internal market research tool, powered by Buntin Group"
-    "\n\nPlease put your OpenAI key below. Don't know the key? Sign in [here](https://platform.openai.com/account/api-keys). "
+    "\n\nPlease put your Gemini API key below. Don't know the key? Sign in [here](https://platform.openai.com/account/api-keys). "
 )
 
 # Add in main section for password protection
