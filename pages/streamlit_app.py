@@ -3,16 +3,16 @@ from openai import OpenAI
 import google.generativeai as genai
 
 # Home page button
-homeButton = st.button("Home")
+homeButton = st.button("Home", icon="🏠")
 
 if homeButton:
-    st.page_link("https://buntingpt.streamlit.app/", label="Buntin GPT", icon="🏠")
+    st.page_link("https://buntingpt.streamlit.app/", label="Buntin GPT")
 
 # Show title and description.
 st.title("Hi! Welcome to Faye 🤓")
 st.write(
     "Your all-in-one internal market research tool, powered by Buntin Group"
-    "\n\nPlease put your Gemini API key below. Don't know the key? Sign in [here](https://platform.openai.com/account/api-keys). "
+    "\n\nPlease put your Gemini API key below. Don't know the key? Find out how to get it [here](https://ai.google.dev/gemini-api/docs/api-key). "
 )
 
 # Add in main section for password protection
