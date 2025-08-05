@@ -327,3 +327,12 @@ settings.local.*
 # Streamlit secrets and configuration
 .streamlit/secrets.toml
 .streamlit/config.toml
+
+# Streamlit cache
+.streamlit/cache/
+
+# Streamlit logs
+.streamlit/logs/
+
+# Streamlit temp files
+.streamlit/temp/
