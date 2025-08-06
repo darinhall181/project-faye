@@ -13,3 +13,9 @@ showWidgetBorder = true
 
 [server]
 headless = true
+
+[browser]
+gatherUsageStats = false
+
+[ui]
+hideTopBar = true
