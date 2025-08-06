@@ -10,6 +10,12 @@ COPY requirements.txt .
 # Install dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
+# Install git
+# RUN apt-get update && apt-get install -y git
+
+# Clone Gemini Chat - LLM App Repository
+# RUN git clone https://github.com/Deva-Vasista/Gemini-chat.git
+
 # Copy the rest of the application
 COPY . .
 
