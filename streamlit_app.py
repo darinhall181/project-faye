@@ -19,6 +19,14 @@ if st.sidebar.button("🏠 Home", key="nav_home"):
 if st.sidebar.button("🔍 Market Research", key="nav_market"):
     st.session_state.page = "Market Research"
 
+if st.sidebar.button("💡 Conviction Score", key="nav_conviction"):
+    st.session_state.page = "Conviction Score"
+
+if st.sidebar.button("🌐 Web Search", key="nav_web_search"):
+    st.session_state.page = "Web Search"
+
+if st.sidebar.button("📖 Reader File", key="nav_reader_file"):
+    st.session_state.page = "Reader File"
 
 # Initialize page if not set
 if "page" not in st.session_state:
