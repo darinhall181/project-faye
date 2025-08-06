@@ -1,6 +1,13 @@
 import streamlit as st
 import google.generativeai as genai
 
+# Page configuration
+st.set_page_config(
+    page_title="Market Research",
+    page_icon="🔍",
+    layout="wide"
+)
+
 st.title("Market Research 🔍")
 st.write("This is the Market Research page. You can add your market research functionality here.")
 
