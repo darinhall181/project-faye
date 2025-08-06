@@ -1,0 +1,15 @@
+[theme]
+base = "dark"
+backgroundColor = "#000000"
+primaryColor = "#FAFAFA"
+textColor = "#FAFAFA" 
+linkColor = "#FF3100"
+baseRadius = "full"
+borderColor = "#FF3100"
+showWidgetBorder = false
+
+[theme.sidebar]
+showWidgetBorder = true
+
+[server]
+headless = true
