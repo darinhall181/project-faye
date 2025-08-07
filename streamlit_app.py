@@ -1,53 +1,55 @@
 import streamlit as st
 from openai import OpenAI
 import google.generativeai as genai
+from utils.auth import ensure_authentication
 
-# Page configuration
+# ==== Page Configuration ====
 st.set_page_config(
     page_title="Home",
     page_icon="🤓",
     layout="wide"
 )
 
-# ==== Sidebar ====
-# Persona dropdown
-st.sidebar.title("Persona 🤖")
+# Removes automatic side bar
 
-# Create persona dropdown 
+# ==== Sidebar ====
+# Persona buttons
+st.sidebar.title("Persona 🎭")
+
 persona_options = {
-    "None": None,
     "Market Research": "pages/market_research_page.py", 
     "Conviction Score": "pages/conviction_score_page.py",
     "Reader File": "pages/reader_file_page.py"
 }
 
-selected_page = st.sidebar.selectbox(
-    "Choose a persona:",
-    options=list(persona_options.keys()),
-    index=0
-)
+st.sidebar.write("Choose a persona:")
+for persona_label, persona_path in persona_options.items():
+    if st.sidebar.button(persona_label, key=f"persona_btn_home_{persona_label.replace(' ', '_').lower()}"):
+        st.switch_page(persona_path)
 
 # ==== Main ====
 # Check authentication first
-if 'authenticated' not in st.session_state or not st.session_state.authenticated:
-    st.switch_page("pages/password_page.py")
+ensure_authentication()
 
-# Navigate to selected page only if a valid option is selected
-if selected_page != "None" and persona_options[selected_page] is not None:
-    st.switch_page(persona_options[selected_page])
+# Navigation only occurs on button click above
 
 
-# Home page content
-st.title("Hi! Welcome to Faye 🤓")
-st.write(
-    "Your all-in-one internal market research tool, powered by Buntin Group"
-    "\n\nThis is a work in progress. Find out how to get the GeminiAPI key [here](https://ai.google.dev/gemini-api/docs/api-key). "
-    "\n\nNew to Faye? Find out how to use it below."
-)
-here = st.button("HERE", key="here")
-if here:
-    st.switch_page("pages/how_to.py")
 
-if st.button("🚪 Sign Out", key="logout"):
-    st.session_state.authenticated = False
-    st.switch_page("pages/password_page.py")
+# Home page content (centered)
+col_left, col_center, col_right = st.columns([1, 2, 1])
+with col_center:
+    st.title("Hi! Welcome to Faye")
+    st.write(
+        "Your all-in-one internal market research tool, powered by Buntin Group"
+        "\n\nThis is a work in progress. Find out how to get the GeminiAPI key [here](https://ai.google.dev/gemini-api/docs/api-key). "
+        "\n\nNew to Faye? Find out how to use it below."
+    )
+    here = st.button("I'm new here!", key="here", use_container_width=True)
+    if here:
+        st.switch_page("pages/how_to.py")
+
+    if st.button("🚪 Sign Out", key="logout", use_container_width=True):
+        st.session_state.authenticated = False
+        st.session_state.pop("username", None)
+        st.session_state.pop("user_store", None)
+        st.switch_page("pages/password_page.py")
