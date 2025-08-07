@@ -336,3 +336,4 @@ settings.local.*
 
 # Streamlit temp files
 .streamlit/temp/
+.streamlit/secrets.toml
