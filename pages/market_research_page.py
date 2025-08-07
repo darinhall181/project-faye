@@ -12,6 +12,8 @@ st.set_page_config(
 if 'authenticated' not in st.session_state or not st.session_state.authenticated:
     st.switch_page("pages/password_page.py")
 
+# === Sidebar ===
+
 # Persona dropdown
 st.sidebar.title("Persona 🤖")
 
@@ -33,23 +35,60 @@ selected_page = st.sidebar.selectbox(
 if selected_page != "None" and selected_page != "Market Research" and persona_options[selected_page] is not None:
     st.switch_page(persona_options[selected_page])
 
+# === Main Content ===
+
 # Home button
 if st.button("🏠 Back to Home", key="market_home"):
     st.switch_page("streamlit_app.py")
 
 st.title("Market Research 🔍")
-st.write("This is the Market Research page. You can add your market research functionality here.")
 
-# Example market research functionality
-st.header("Competitor Analysis")
-st.write("Upload documents to analyze competitors and market trends.")
+# === Gemini Chatbot Integration ===
 
+# Gemini API Key from secrets.toml
+Gemini_Key = st.secrets["GEMINI_APIKEY"]
+
+# Check if API key is stored in session state
+if "Key" not in st.session_state:
+    st.session_state["Key"]  = st.secrets["GEMINI_APIKEY"]
+
+# Configure Gemini API
+genai.configure(api_key=Gemini_Key)
+
+if "messages" not in st.session_state:
+    st.session_state["messages"] = [
+        {"role": "assistant", "content": "Hi, I'm an expert market researcher who's here to help :)"}
+    ]
+
+for msg in st.session_state.messages:
+    st.chat_message(msg["role"]).write(msg["content"])
+
+
+if prompt := st.chat_input(placeholder="What are the latest trends in the electric vehicle market?"):
+    st.session_state.messages.append({"role": "user", "content": prompt})
+    st.chat_message("user").write(prompt)
+
+    if not Gemini_Key:
+        st.info("The current API key is not working. Please contact your administrator for help.")
+        st.stop()
+
+    model =genai.GenerativeModel("gemini-pro")
+    chat = model.start_chat(history=[])
+    with st.chat_message("assistant"):
+        with st.spinner("Thinking with conviction..."):
+            response = chat.send_message(prompt,stream=True)
+            response.resolve()
+            st.session_state.messages.append({"role": "assistant", "content": response.text}) 
+            for chunk in response:
+                st.markdown(chunk.text)
+
+
+# === Document Uploader ===
 uploaded_file = st.file_uploader(
-    "Upload market research documents (.txt or .md)", 
-    type=("txt", "md"),
-    key="market_research_uploader"
+    "Upload relevant documents as needed", 
+    type=("pdf", "docx"),
+    key="document_uploader"
 )
 
 if uploaded_file:
     st.success("Document uploaded successfully!")
-    st.write("Add your market research analysis here.")

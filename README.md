@@ -26,3 +26,9 @@ At Buntin, we pride ourselves on our vast industry knowledge and expertise due t
 ### 📝 Market Research Report Generator
 
 This feature creates a birds-eye-view of a particular product or industry to aid in the kick-off of of new business. This general market research report, exported in either Word, PDF, or LaTex format, includes information regarding the product, its main competitors, and answers any questions regarding the initial topic. This report also creates the template for further editing and populating of new  insights gained by the employee. 
+
+## Developer Note
+
+This project is containerized using [![*Docker*]](https://www.docker.com/), which allows for consistent and reproducible environments across different machines. Docker packages all dependencies, code, and configuration into isolated containers, making it easier to build, ship, and run the app anywhere. More information on how to use Docker [![here]](https://docker-curriculum.com/). The application is built with Streamlit, a Python-based web framework designed for creating interactive data apps with minimal effort. To learn more about how to use Streamlit (especially its API references), click [![here]](https://docs.streamlit.io/get-started). The app is intended to be deployed to the web and can be hosted via services like Streamlit Community Cloud, GitHub Pages (for static assets), or other container-based platforms. This repository is maintained and version-controlled through GitHub for collaborative development, testing, and deployment.
+
+If you have any questions or concerns regarding access please email me at dah181@case.edu or contact@darinhall.com. Thanks! :+1:

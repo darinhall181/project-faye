@@ -11,8 +11,8 @@ st.set_page_config(
 if 'authenticated' not in st.session_state:
     st.session_state.authenticated = False
 
-# Define the correct password (you can change this)
-CORRECT_PASSWORD = "faye2024"
+# Password from secrets.toml
+CORRECT_PASSWORD = st.secrets["CORRECT_PASSWORD"]
 
 # Main authentication logic
 if not st.session_state.authenticated:
