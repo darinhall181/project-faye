@@ -326,7 +326,7 @@ settings.local.*
 
 # Streamlit secrets and configuration
 .streamlit/secrets.toml
-.streamlit/config.toml
+.streamlit/user_data/
 
 # Streamlit cache
 .streamlit/cache/

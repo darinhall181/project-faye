@@ -2,12 +2,11 @@
 
 Buntin group is an independent advertising agency recognized by ADWEEK as a "Top US Ad Agency" specializing in building Brand Conviction. This project was introduced summer 2025 in order to move Buntin into the age of Artificial Intelligence. This uses Streamlit to host a local portal helping Buntin employees with their individual workflow. Some features include Deep Web Search, Reader File Report (both powered by Buntin GPT), and Conviction score. 
 
-[![Click Here]](https://buntingpt.streamlit.app/) to view the final product. 
+[Click Here](https://buntingpt.streamlit.app/) to view the final product. 
 
-## Buntin GPT Overview
+## General Overview
 
-Buntin GPT serves as the back-end powerhouse behind Faye. This specific GPT was created through Open AI, trained on specific data accumulated and tailored by Buntin professionals since its inception in 1972. This data includes resources from the internet as well as personal insights from our strategy, media, and executive team. This specific GPT is called through a unique API key, which then routes to Faye--it's front end counterpart. 
-
+This Artificial Intelligence platform runs off of Google's Gemini--trained on specific data accumulated and tailored by Buntin professionals since its inception in 1972. The provided insights from the platform includes resources from the internet as well as personal insights from our strategy, media, and executive team.
 
 ## Faye Key Features
 
@@ -29,6 +28,8 @@ This feature creates a birds-eye-view of a particular product or industry to aid
 
 ## Developer Note
 
-This project is containerized using [![*Docker*]](https://www.docker.com/), which allows for consistent and reproducible environments across different machines. Docker packages all dependencies, code, and configuration into isolated containers, making it easier to build, ship, and run the app anywhere. More information on how to use Docker [![here]](https://docker-curriculum.com/). The application is built with Streamlit, a Python-based web framework designed for creating interactive data apps with minimal effort. To learn more about how to use Streamlit (especially its API references), click [![here]](https://docs.streamlit.io/get-started). The app is intended to be deployed to the web and can be hosted via services like Streamlit Community Cloud, GitHub Pages (for static assets), or other container-based platforms. This repository is maintained and version-controlled through GitHub for collaborative development, testing, and deployment.
+This project is containerized using [*Docker*](https://www.docker.com/), which allows for consistent and reproducible environments across different machines. Docker packages all dependencies, code, and configuration into isolated containers, making it easier to build, ship, and run the app anywhere. More information on how to use Docker [here](https://docker-curriculum.com/). The application is built with Streamlit, a Python-based web framework designed for creating interactive data apps with minimal effort. To learn more about how to use Streamlit (especially its API references), click [here](https://docs.streamlit.io/get-started). The app is intended to be deployed to the web and can be hosted via services like Streamlit Community Cloud, GitHub Pages (for static assets), or other container-based platforms. This repository is maintained and version-controlled through GitHub for collaborative development, testing, and deployment.
+
+[Here](https://cloud.google.com/vertex-ai/generative-ai/docs/models/gemini-use-supervised-tuning) is a guide as to how to interact with fine tuning Gemini Models. [This](https://colab.research.google.com/github/GoogleCloudPlatform/generative-ai/blob/main/gemini/tuning/sft_gemini_summarization.ipynb) is an example of its implementation through python specifically, which can be trained in the uitls/__llm.py__ and utils/__prompt.py__ python files in this repository. 
 
 If you have any questions or concerns regarding access please email me at dah181@case.edu or contact@darinhall.com. Thanks! :+1:

@@ -1,4 +1,20 @@
+"""
+Login page for Faye.
+
+How it works
+------------
+- This page renders the login form and verifies credentials by calling
+  utils.auth.authenticate(), which checks values in st.secrets.
+- On success, it sets st.session_state["authenticated"] = True and
+  st.session_state["username"], then loads the user’s persisted store
+  into st.session_state["user_store"].
+- Other pages protect access by calling utils.auth.ensure_authentication()
+  so unauthenticated users are redirected here.
+"""
+
 import streamlit as st
+from utils.auth import authenticate
+from utils.user_store import load_user_store
 
 # Page configuration
 st.set_page_config(
@@ -11,19 +27,29 @@ st.set_page_config(
 if 'authenticated' not in st.session_state:
     st.session_state.authenticated = False
 
-# Password from secrets.toml
-CORRECT_PASSWORD = st.secrets["CORRECT_PASSWORD"]
+USERNAME_PLACEHOLDER = st.secrets["CORRECT_USERNAME"]
 
 # Main authentication logic
 if not st.session_state.authenticated:
-    st.title("Please sign in 🔐")
     
     # Create a centered container for the password form
     col1, col2, col3 = st.columns([1, 2, 1])
-    
+   
+    with col2:
+        st.title("Please sign in below") 
+
+
     with col2:
         st.markdown("---")
         
+        # Username input
+        username = st.text_input(
+            "Username:",
+            placeholder="Enter username",
+            value="",
+            key="login_username"
+        )
+
         # Password input
         password = st.text_input(
             "Enter your password:",
@@ -33,12 +59,15 @@ if not st.session_state.authenticated:
         
         # Submit button
         if st.button("Sign In", type="primary", use_container_width=True):
-            if password == CORRECT_PASSWORD:
+            if authenticate(username.strip(), password):
                 st.session_state.authenticated = True
+                st.session_state.username = username.strip()
+                # Load user store into session
+                st.session_state.user_store = load_user_store(st.session_state.username)
                 st.success("Authentication successful! Redirecting...")
                 st.rerun()
             else:
-                st.error("❌ Incorrect password. Please try again.")
+                st.error("❌ Incorrect credentials. Please try again.")
         
         st.markdown("---")
         
