@@ -1,0 +1,14 @@
+{
+  "market": {
+    "chat_history": {},
+    "current_chat_id": null
+  },
+  "reader": {
+    "chat_history": {},
+    "current_chat_id": null
+  },
+  "conviction": {
+    "chat_history": {},
+    "current_chat_id": null
+  }
+}
