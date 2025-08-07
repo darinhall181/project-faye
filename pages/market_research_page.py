@@ -12,6 +12,8 @@ st.set_page_config(
 if 'authenticated' not in st.session_state or not st.session_state.authenticated:
     st.switch_page("pages/password_page.py")
 
+# === Sidebar ===
+
 # Persona dropdown
 st.sidebar.title("Persona 🤖")
 
@@ -33,22 +35,24 @@ selected_page = st.sidebar.selectbox(
 if selected_page != "None" and selected_page != "Market Research" and persona_options[selected_page] is not None:
     st.switch_page(persona_options[selected_page])
 
+# === Main Content ===
+
 # Home button
 if st.button("🏠 Back to Home", key="market_home"):
     st.switch_page("streamlit_app.py")
 
 st.title("Market Research 🔍")
 
+# === Gemini Chatbot Integration ===
 
-def_key = "AIzaSyA2TETJplezIuU-6VSOgmEPemhCA04GN1A"
-default = st.sidebar.button("Use Default")
+# Gemini API Key from secrets.toml
+Gemini_Key = st.secrets["GEMINI_APIKEY"]
 
-Gemini_Key = def_key
-
+# Check if API key is stored in session state
 if "Key" not in st.session_state:
-    st.session_state["Key"]  = Gemini_Key
-    
+    st.session_state["Key"]  = st.secrets["GEMINI_APIKEY"]
 
+# Configure Gemini API
 genai.configure(api_key=Gemini_Key)
 
 if "messages" not in st.session_state:
@@ -78,6 +82,8 @@ if prompt := st.chat_input(placeholder="What are the latest trends in the electr
             for chunk in response:
                 st.markdown(chunk.text)
 
+
+# === Document Uploader ===
 uploaded_file = st.file_uploader(
     "Upload relevant documents as needed", 
     type=("pdf", "docx"),
