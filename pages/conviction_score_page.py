@@ -182,7 +182,7 @@ if st.session_state.conviction_current_chat_id and st.session_state.conviction_c
         - Uploaded files: {context_summary['uploaded_files']}
         - Conversation length: {context_summary['num_messages']} messages
 
-        You are an investment analyst. Provide a conviction score rationale, key risks, catalysts, and a succinct recommendation. Use any uploaded documents as grounding context.
+        You are an advertising analyst. Provide a conviction score rationale based on the uploaded documents. Use any uploaded documents as grounding context.
         """
 
         Gemini_Key = st.secrets["GEMINI_APIKEY"]
@@ -213,9 +213,7 @@ else:
     **How to use:**
     1. Click "New Chat" in the sidebar (if no chats exist)
     2. Or click "Open Chat" on a conversation (if chats exist)
-    3. Upload relevant documents (appears once a chat is active)
-    4. Ask questions about conviction and risk
-    5. Your conversations will be saved in the sidebar
+    3. Upload relevant documents that you would like to be included in the calculation
     """)
 
 # === Delete All Chats (with confirmation) ===

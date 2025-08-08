@@ -198,7 +198,8 @@ if st.session_state.current_chat_id and st.session_state.current_chat_id in st.s
         - Files: {[f['name'] for f in context_info['uploaded_files']]}
         - Conversation length: {context_info['chat_history']} messages
         
-        Please provide a comprehensive market research response considering any uploaded documents and previous conversation context.
+        Please provide a comprehensive market research response considering any uploaded documents and previous conversation context. 
+        Please be as robust as possible, including any relevant information that you can find including links to the sources.
         """
         
         # Gemini API integration
@@ -239,9 +240,8 @@ else:
     **How to use:**
     1. Click "New Chat" in the sidebar (if no chats exist)
     2. Or click "Open Chat" on a conversation (if chats exist)
-    3. Upload relevant documents (appears once a chat is active)
+    3. Upload relevant documents that you would like to be included in the market research report
     4. Ask questions about market research
-    5. Your conversations will be saved in the sidebar
     """)
 
 # === Delete All Chats (with confirmation) ===
