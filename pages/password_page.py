@@ -13,6 +13,7 @@ How it works
 """
 
 import streamlit as st
+from streamlit.runtime.secrets import StreamlitSecretNotFoundError
 from utils.auth import authenticate
 from utils.user_store import load_user_store
 
@@ -26,8 +27,6 @@ st.set_page_config(
 # Initialize session state for authentication
 if 'authenticated' not in st.session_state:
     st.session_state.authenticated = False
-
-USERNAME_PLACEHOLDER = st.secrets["CORRECT_USERNAME"]
 
 # Main authentication logic
 if not st.session_state.authenticated:
@@ -59,15 +58,19 @@ if not st.session_state.authenticated:
         
         # Submit button
         if st.button("Sign In", type="primary", use_container_width=True):
-            if authenticate(username.strip(), password):
-                st.session_state.authenticated = True
-                st.session_state.username = username.strip()
-                # Load user store into session
-                st.session_state.user_store = load_user_store(st.session_state.username)
-                st.success("Authentication successful! Redirecting...")
-                st.rerun()
-            else:
-                st.error("❌ Incorrect credentials. Please try again.")
+            try:
+                if authenticate(username.strip(), password):
+                    st.session_state.authenticated = True
+                    st.session_state.username = username.strip()
+                    # Load user store into session
+                    st.session_state.user_store = load_user_store(st.session_state.username)
+                    st.success("Authentication successful! Redirecting...")
+                    st.rerun()
+                else:
+                    st.error("❌ Incorrect credentials. Please try again.")
+            except StreamlitSecretNotFoundError:
+                st.error("No secrets configured. Add a .streamlit/secrets.toml or set secrets in your deploy environment.")
+                st.info("Required keys: CORRECT_USERNAME, CORRECT_PASSWORD, GEMINI_APIKEY")
         
         st.markdown("---")
         

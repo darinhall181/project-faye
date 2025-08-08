@@ -115,7 +115,7 @@ st.title("Reader File 📖")
 
 # === Chat Interface ===
 st.markdown("---")
-st.subheader("💬 Chat about your document")
+st.subheader("💬 Create your reader file here!")
 
 # Do not auto-select a chat; require clicking "Open Chat"
 
@@ -186,7 +186,27 @@ if st.session_state.reader_current_chat_id and st.session_state.reader_current_c
         - Uploaded files: {context_summary['uploaded_files']}
         - Conversation length: {context_summary['num_messages']} messages
 
-        Please read the uploaded documents if provided and answer the question.
+        Please read the uploaded documents. Please create a robust file that includes any relevant information 
+        that you can find regarding the contents of the messages as well as the uploaded documents.
+        Please create a docx file that includes the information that you have found. Please structure it as follows:
+        Opening Question: leave section blank
+        [Insert brand name here as title]
+        Company Overview/Details:
+        Business Performance/Trends & Growth
+        Leadership Team/Board of Directors: 
+        Recognition & Awards:
+        Branding Components (positioning, strategy, others of note):
+        Core products / new product development: 
+        Equities / product truths: 
+        strengths / differentiation: 
+        Barriers and challenges: 
+        Audience / Customer insights: 
+        Key Competitors: 
+        Category Assessment: 
+
+        Please do your best to fill in as much information of the above categories regarding the company from the user 
+        query and this current session. If you do not know enough information or cannot find any information regarding 
+        that specific company, prioritize stating that you do not have a lot of information rather than guessing. 
         """
 
         Gemini_Key = st.secrets["GEMINI_APIKEY"]
@@ -218,9 +238,8 @@ else:
     **How to use:**
     1. Click "New Chat" in the sidebar (if no chats exist)
     2. Or click "Open Chat" on a conversation (if chats exist)
-    3. Upload a document (appears once a chat is active)
-    4. Ask questions about the content
-    5. Your conversations will be saved in the sidebar
+    3. Upload relevant documents that you would like to be included in the reader file
+    4. Input any information that you would like to be included in the reader file
     """)
 
 # === Delete All Chats (with confirmation) ===
