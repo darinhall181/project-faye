@@ -10,8 +10,6 @@ st.set_page_config(
     layout="wide"
 )
 
-# Removes automatic side bar
-
 # ==== Sidebar ====
 # Persona buttons
 st.sidebar.title("Persona 🎭")
