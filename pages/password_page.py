@@ -57,7 +57,7 @@ if not st.session_state.authenticated:
         )
         
         # Submit button
-        if st.button("Sign In", type="primary", use_container_width=True):
+        if st.button("Sign In", type="secondary", use_container_width=True):
             try:
                 if authenticate(username.strip(), password):
                     st.session_state.authenticated = True
