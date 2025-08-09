@@ -2,7 +2,7 @@
 
 Buntin group is an independent advertising agency recognized by ADWEEK as a "Top US Ad Agency" specializing in building Brand Conviction. This project was introduced summer 2025 in order to move Buntin into the age of Artificial Intelligence. This uses Streamlit to host a local portal helping Buntin employees with their individual workflow. Some features include Deep Web Search, Reader File Report (both powered by Buntin GPT), and Conviction score. 
 
-[Click Here](https://buntingpt.streamlit.app/) to view the final product. 
+[Click Here](https://fayeassistant.streamlit.app/) to view the final product. 
 
 ## General Overview
 
